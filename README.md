@@ -6,6 +6,8 @@ Este é um projeto de MVP para um sistema de gerenciamento de clínica, desenvol
 
 ## Como Rodar o Projeto
 
+voce deve ter o PostgreSql Instalado e ter a porta localhost:5432 Livre pra isso e depois :
+
 Passo 1: Rodar o Backend (Java)
 Clone o repositório para sua máquina local.
 Navegue até a pasta do backend.
