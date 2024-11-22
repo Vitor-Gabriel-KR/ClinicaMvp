@@ -15,7 +15,6 @@
               @input="v$.nome.$touch"
             ></v-text-field>
 
-            <!-- Data de Nascimento com o formato correto de string -->
             <v-text-field
               v-model="state.data_nascimento"
               label="Data de Nascimento"
@@ -96,13 +95,13 @@
 import { reactive, ref, computed } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, email } from '@vuelidate/validators';
-import axios from 'axios'; // Importando axios para enviar a requisição ao backend
+import axios from 'axios';
 
 const statusOptions = ['Ativo', 'Inativo'];
 
 const initialState = {
   nome: '',
-  data_nascimento: '', // A data será sempre uma string
+  data_nascimento: '',
   telefone: '',
   endereco: '',
   email: '',
@@ -111,7 +110,7 @@ const initialState = {
 
 const state = reactive({ ...initialState });
 const formInvalid = ref(false);
-const formSubmitted = ref(false); // Para controlar a exibição de sucesso ou erro no envio
+const formSubmitted = ref(false);
 
 const rules = {
   nome: { required },
@@ -124,10 +123,8 @@ const rules = {
 
 const v$ = useVuelidate(rules, state);
 
-// Computed para verificar se o formulário é válido
 const isFormValid = computed(() => v$.value.$pending === false && v$.value.$invalid === false);
 
-// Função para limpar o formulário
 function clear() {
   v$.value.$reset();
   for (const [key, value] of Object.entries(initialState)) {
@@ -141,27 +138,25 @@ async function validateAndSubmit() {
 
   if (isValid) {
     try {
-      // O valor de data_nascimento já é uma string no formato 'YYYY-MM-DD'
       const payload = {
         nome: state.nome,
-        dataNascimento: state.data_nascimento, // Passando a data como string diretamente
+        dataNascimento: state.data_nascimento,
         telefone: state.telefone,
         endereco: state.endereco,
         email: state.email,
-        status: state.status === 'Ativo', // Convertendo status para booleano
+        status: state.status === 'Ativo',
       };
       
       console.log('Payload:', payload);
       
-      // Enviar os dados para o backend
       const response = await axios.post('http://localhost:8080/pacientes', payload);
       console.log('Paciente cadastrado com sucesso:', response.data);
 
-      formSubmitted.value = true; // Mostrar mensagem de sucesso
-      clear(); // Limpar o formulário após o envio bem-sucedido
+      formSubmitted.value = true;
+      clear();
 
       setTimeout(() => {
-        formSubmitted.value = false; // Ocultar mensagem após 5 segundos
+        formSubmitted.value = false;
       }, 5000);
     } catch (error) {
       console.error('Erro ao cadastrar o paciente:', error.response || error.message);

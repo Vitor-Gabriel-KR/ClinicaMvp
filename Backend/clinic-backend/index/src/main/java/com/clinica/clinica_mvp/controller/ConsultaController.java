@@ -3,6 +3,7 @@ package com.clinica.clinica_mvp.controller;
 import com.clinica.clinica_mvp.model.consulta;
 import com.clinica.clinica_mvp.services.ConsultaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,5 +28,10 @@ public class ConsultaController {
     @DeleteMapping("/{id}")
     public void excluir(@PathVariable Long id) {
         consultaService.excluir(id);
+    }
+
+    public ResponseEntity<consulta> atualizar(long l, consulta novaConsulta) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'atualizar'");
     }
 }

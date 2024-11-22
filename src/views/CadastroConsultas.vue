@@ -149,7 +149,7 @@ export default {
       statusOptions: ["Confirmada", "Pendente", "Cancelada"],
       diasUteis: {},
       diaSelecionado: {},
-      horariosSelecionados: {},  // Ajustado para armazenar um único horário
+      horariosSelecionados: {},
       horariosDisponiveis: {},
       medicos: [],
       medicosAtivos: [],
@@ -227,18 +227,15 @@ export default {
       }
 
       const dia = this.diaSelecionado[this.medicoSelecionado.id];
-    const horario = this.horariosSelecionados[this.medicoSelecionado.id];  // Agora é um único horário selecionado
+    const horario = this.horariosSelecionados[this.medicoSelecionado.id];
 
+    const dataHora = horario;
 
-    // DataHora como apenas hora (HH:MM)
-    const dataHora = horario;  // O horário já está em formato de hora ("13:00")
-
-    // Montar o objeto de consulta no formato esperado
     const consulta = {
-      paciente: { id: this.paciente_id },  // Incluindo o paciente com ID
-      agenda: { id: this.medicoSelecionado.id },  // Incluindo a agenda com o ID do médico
-      dia: dia,  // Nome do dia da semana (ex: "Quinta-feira")
-      dataHora: dataHora,  // Hora selecionada (ex: "13:00")
+      paciente: { id: this.paciente_id },
+      agenda: { id: this.medicoSelecionado.id },
+      dia: dia,
+      dataHora: dataHora,
       status: this.status
     };
 

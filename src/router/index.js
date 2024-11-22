@@ -28,16 +28,14 @@ const routes = [
     name: 'CadastroConsultas', 
     component: CadastroConsultas 
   },
-  // Rota padrão (caso o usuário acesse uma URL inválida)
   { 
     path: '/:pathMatch(.*)*', 
     redirect: '/medicos' 
   }
 ];
 
-// Criação do roteador
 const router = createRouter({
-  history: createWebHistory(), // Utiliza o modo de histórico HTML5
+  history: createWebHistory(),
   routes,
 });
 

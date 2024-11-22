@@ -23,4 +23,9 @@ public class ConsultaService {
     public void excluir(Long id) {
         consultaRepository.deleteById(id);
     }
+
+    public Object buscarPorId(long l) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'buscarPorId'");
+    }
 }

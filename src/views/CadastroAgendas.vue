@@ -181,13 +181,11 @@ export default {
       this.isUpdating = true;
 
       try {
-        // Buscar agendas existentes
         const response = await axios.get('http://localhost:8080/agendas');
-        const existingAgendas = response.data || []; // Agendas já cadastradas
+        const existingAgendas = response.data || [];
 
         console.log('Agendas existentes:', existingAgendas);
 
-        // Enviar dados para cada dia selecionado
         for (const day of this.selectedDays) {
           const agendaData = {
             medico: {
@@ -198,7 +196,6 @@ export default {
             status: this.isActiveAgenda,
           };
 
-          // Verificar se o dia já está cadastrado
           const existingAgenda = existingAgendas.find(
             agenda =>
               agenda.medico.id === this.selectedDoctor &&
@@ -206,7 +203,6 @@ export default {
           );
 
           if (existingAgenda) {
-            // Se o dia já existir, atualizar a agenda com PUT
             console.log(`Atualizando agenda para o dia: ${day}`);
             try {
               await axios.put(
@@ -220,7 +216,6 @@ export default {
               alert(`Erro ao atualizar agenda para o dia ${day}`);
             }
           } else {
-            // Caso contrário, cadastrar nova agenda com POST
             console.log(`Cadastrando nova agenda para o dia: ${day}`);
             try {
               await axios.post('http://localhost:8080/agendas', agendaData);
@@ -242,7 +237,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
   .v-card {
