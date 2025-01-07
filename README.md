@@ -2,7 +2,7 @@
 # Projeto MVP de Sistema de Clínica
 
 
-Este é um projeto de MVP para um sistema de gerenciamento de clínica, desenvolvido como parte de um teste para entrevista de emprego. O sistema possui funcionalidades como cadastro de médicos, pacientes, agendas e consultas.
+Este é um projeto de MVP para um sistema de gerenciamento de clínica. O sistema possui funcionalidades como cadastro de médicos, pacientes, agendas e consultas.
 
 ## Como Rodar o Projeto
 
